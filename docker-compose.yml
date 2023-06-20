@@ -12,7 +12,8 @@ services:
     depends_on:
       - api
     networks:
-      - app_network
+      - frontend
+      - backend
 
   api:
     image: api-image
@@ -26,7 +27,8 @@ services:
     depends_on:
       - mongodb
     networks:
-      - app_network
+      - frontend
+      - backend
 
   mongodb:
     image: mongo
@@ -38,12 +40,12 @@ services:
     volumes:
       - mongodb_data:/data/db
     networks:
-      - app_network
+      - backend
 
 volumes:
   mongodb_data:
 
 
 networks:
-  app_network:
-    driver: bridge
+  frontend:
+  backend:
